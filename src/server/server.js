@@ -24,12 +24,21 @@ app.use((req, res, unusedNext) => {
     routes,
     location: req.originalUrl,
   }, (error, redirectLocation, renderProps) => {
-    const content = ReactDOMServer.renderToString(<RouterContext {...renderProps}/>);
-    res.render('index', {
-      content,
-      baseCssUrl: Config.baseCssUrl,
-      baseJsUrl: Config.baseJsUrl,
-    });
+
+      if (error) {
+          res.status(500).send(error.message)
+      } else if (redirectLocation) {
+          res.redirect(302, redirectLocation.pathname + redirectLocation.search)
+      } else if (renderProps) {
+          const content = ReactDOMServer.renderToString(<RouterContext {...renderProps}/>);
+          res.render('index', {
+              content,
+              baseCssUrl: Config.baseCssUrl,
+              baseJsUrl: Config.baseJsUrl,
+          });
+      } else {
+          res.status(404).send('Not found')
+      }
   });
 });
 
