@@ -7,6 +7,8 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import routes from 'app/shared/routes';
 
+import models from '../models';
+
 const app = express();
 
 app.set('views', './src/views');
@@ -29,8 +31,12 @@ app.use((req, res, unusedNext) => {
   });
 });
 
-const server = app.listen(Config.appPort, () => {
-  var host = server.address().address;
-  var port = server.address().port;
-  console.log('Server listening at http://%s:%s', host, port);
+models.sequelize.sync().then(() => {
+    console.log("Successfuly synced with the database");
+
+    const server = app.listen(Config.appPort, () => {
+        let host = server.address().address;
+        let port = server.address().port;
+        console.log('Server listening at http://%s:%s', host, port);
+    });
 });

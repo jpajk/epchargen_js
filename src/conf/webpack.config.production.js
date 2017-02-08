@@ -3,7 +3,7 @@
 
 module.exports = {
     entry: {
-        app: ['./lib/client/entry'],
+        app: ['./lib/client/entry.js'],
     },
     output: {
         path: './lib/static/js',
