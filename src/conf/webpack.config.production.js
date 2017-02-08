@@ -10,13 +10,19 @@ module.exports = {
         filename: '[name].js',
     },
     resolve: {
-        extensions: ['.js'],
+        extensions: ['.js', '.scss', '.css'],
     },
     module: {
-        loaders: [{
-            test: /\.less$/,
-            loader: 'style-loader!css-loader!less-loader',
-        }],
+        loaders: [
+            {
+                test: /\.scss/,
+                loader: 'style-loader!css-loader!sass-loader',
+            },
+            {
+                test: /\.css/,
+                loader: 'style-loader!css-loader',
+            },
+        ],
     },
     plugins: []
 

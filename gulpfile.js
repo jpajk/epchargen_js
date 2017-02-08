@@ -5,7 +5,7 @@ var merge = require('merge-stream');
 var print = require('gulp-print');
 var watch = require('gulp-watch');
 
-var fileTypesToCopy = ['less', 'png', 'ico'];
+var fileTypesToCopy = ['css', 'png', 'ico', 'scss', 'js'];
 
 // watch all fileTypesToCopy vendor files, update in lib when changed
 gulp.task('stream-all', function() {

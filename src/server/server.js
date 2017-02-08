@@ -17,6 +17,8 @@ app.set('view engine', 'pug');
 app.use(Config.baseJsPath, express.static('lib/static/js'));
 app.use(Config.baseImagePath, express.static('lib/static/img'));
 
+/* todo: find out why webpack doesn't compile assets in certain cases */
+
 app.use((req, res, unusedNext) => {
   match({
     routes,
@@ -32,8 +34,6 @@ app.use((req, res, unusedNext) => {
 });
 
 models.sequelize.sync().then(() => {
-    console.log("Successfuly synced with the database");
-
     const server = app.listen(Config.appPort, () => {
         let host = server.address().address;
         let port = server.address().port;
