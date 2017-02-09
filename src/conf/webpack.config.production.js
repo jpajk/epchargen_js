@@ -1,5 +1,4 @@
 /* eslint-env node */
-// var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -24,9 +23,4 @@ module.exports = {
             },
         ],
     },
-    plugins: []
-
-    // plugins: [
-    //   new ExtractTextPlugin('[name].css'),
-    // ],
 };

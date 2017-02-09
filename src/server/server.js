@@ -24,7 +24,6 @@ app.use((req, res, unusedNext) => {
     routes,
     location: req.originalUrl,
   }, (error, redirectLocation, renderProps) => {
-
       if (error) {
           res.status(500).send(error.message)
       } else if (redirectLocation) {
