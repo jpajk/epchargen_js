@@ -53,7 +53,7 @@ db.PlayerCharacter.belongsTo(db.Player);
 /** AptitudeValue belongs to Aptitude */
 db.AptitudeValue.belongsTo(db.Aptitude);
 
-/** AptitudeValue also belongs to player character */
+/** AptitudeValue also belongs to PlayerCharacter */
 db.AptitudeValue.belongsTo(db.PlayerCharacter);
 
 module.exports = db;
