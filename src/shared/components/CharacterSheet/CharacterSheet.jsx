@@ -19,9 +19,12 @@ const CharacterSheet = React.createClass(
         handleFormSubmit(e) {
             e.preventDefault();
 
+            console.log(SendUserData.body);
+
             performFetch(
                 SendUserData.submitCharacterSheet.route,
-                SendUserData.submitCharacterSheet.func
+                SendUserData.submitCharacterSheet.func,
+                SendUserData.submitCharacterSheet.body
             );
         }
     }

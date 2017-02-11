@@ -1,8 +1,17 @@
 import 'whatwg-fetch'
 
-export default function performFetch(route, func) {
-    fetch(route, {method: 'POST'})
-        .then(function(response) {
+export default function performFetch(route, func, body) {
+
+    body = body || {};
+
+    fetch(
+        route, {
+            method: 'POST',
+            body: JSON.stringify(body)
+        }
+    ).then(
+        (response) => {
             return func(response);
-        })
-}
+        }
+    )
+};

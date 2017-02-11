@@ -9,8 +9,6 @@ import routes from 'app/shared/routes';
 import models from '../models';
 import app from './express';
 
-/* todo: find out why webpack doesn't compile assets in certain cases */
-
 app.use((req, res, unusedNext) => {
   match({
     routes,
