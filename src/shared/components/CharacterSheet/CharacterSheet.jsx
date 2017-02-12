@@ -28,9 +28,6 @@ const CharacterSheet = React.createClass(
         handleFormSubmit(e) {
             e.preventDefault();
 
-            console.log(SendUserData.body);
-            /** body will also become a function */
-
             performFetch(
                 SendUserData.submitCharacterSheet.route,
                 SendUserData.submitCharacterSheet.func,

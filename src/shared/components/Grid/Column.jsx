@@ -12,13 +12,9 @@ const Container = React.createClass
 
         determineClassName() {
             let singular = ['one', 'one-half'];
+            let c = 'column';
 
-            console.log(singular.indexOf(this.props.columns) >= 0);
-            if (singular.indexOf(this.props.columns) >= 0)
-                return 'column';
-            else
-                return 'columns';
-
+            return (singular.indexOf(this.props.columns) >= 0) ? c : c + 's';
         },
 
         render() {
@@ -26,7 +22,12 @@ const Container = React.createClass
             let className = this.props.columns || '';
 
             return (
-                <div id={id} className={className + ' ' +  this.determineClassName()}>{this.props.children}</div>
+                <div
+                    id={id}
+                    className={className + ' ' +  this.determineClassName()}
+                >
+                    {this.props.children}
+                </div>
             );
         }
     }

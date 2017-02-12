@@ -1,13 +1,12 @@
 import React from 'react';
-import Menu from './Menu/Menu';
-import TabHandler from './TabHandler/TabHandler';
-import Container from './Grid/Container';
-import Row from './Grid/Row';
-import Column from './Grid/Column';
-import Wrapper from './Grid/Wrapper';
+import Menu from '../Menu/Menu';
+import TabHandler from '../TabHandler/TabHandler';
+import Container from '../Grid/Container';
+import Row from '../Grid/Row';
+import Column from '../Grid/Column';
+import Wrapper from '../Grid/Wrapper';
 
-// todo: rewrite components
-const App = React.createClass
+const Index = React.createClass
 (
     {
         render() {
@@ -44,9 +43,9 @@ const App = React.createClass
         },
 
         componentDidMount() {
-            require('./skeleton.css');
+            require('../skeleton.css');
         }
     }
 );
 
-export default App;
+export default Index;

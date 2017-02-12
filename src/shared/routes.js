@@ -1,11 +1,11 @@
 import React from 'react';
 import {Router, Route} from 'react-router';
 
-import App from 'app/shared/components/App';
+import Index from 'app/shared/components/Index';
 
 const Routes = (
   <Router>
-    <Route path="/" component={App}/>
+    <Route path="/" component={Index}/>
   </Router>
 
 );
