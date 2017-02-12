@@ -1,42 +1,52 @@
 import React from 'react';
 import Menu from './Menu/Menu';
 import TabHandler from './TabHandler/TabHandler';
+import Container from './Grid/Container';
+import Row from './Grid/Row';
+import Column from './Grid/Column';
+import Wrapper from './Grid/Wrapper';
 
 // todo: rewrite components
-const App = React.createClass(
-{
-    render() {
-        return (
-            <div id="app-wrapper">
-                <Menu
-                    handleTabChange={this.handleTabChange}
-                />
-                <TabHandler tab={this.state.tab} />
-            </div>
-        );
-    },
+const App = React.createClass
+(
+    {
+        render() {
+            return (
+                <Wrapper>
+                    <Container id="app-wrapper" className="container">
+                        <Row>
+                            <Column columns="four">
+                                <Menu
+                                    handleTabChange={this.handleTabChange}
+                                />
+                            </Column>
+                            <TabHandler tab={this.state.tab} />
+                        </Row>
+                    </Container>
+                </Wrapper>
+            );
+        },
 
-    getInitialState() {
-        return {
-            tab: 0,
-            formValues: {
-                playerName: '',
-                characterName: ''
-            }
-        };
-    },
+        getInitialState() {
+            return {
+                tab: 0,
+                formValues: {
+                    playerName: '',
+                    characterName: ''
+                }
+            };
+        },
 
-    handleTabChange(tab) {
-        console.log(tab);
-        this.setState({
-           tab: tab
-        });
-    },
+        handleTabChange(tab) {
+            this.setState({
+                tab: tab
+            });
+        },
 
-    componentDidMount() {
-        require('./skeleton.css');
+        componentDidMount() {
+            require('./skeleton.css');
+        }
     }
-}
 );
 
 export default App;

@@ -6,8 +6,9 @@ const Input = React.createClass(
             value: React.PropTypes.string,
             labelValue: React.PropTypes.string,
             handleSubmit: React.PropTypes.func,
+            className: React.PropTypes.string,
             type: React.PropTypes.string.isRequired,
-            name: React.PropTypes.string.isRequired
+            name: React.PropTypes.string.isRequired,
         },
 
         render() {
@@ -16,8 +17,10 @@ const Input = React.createClass(
                             {this.props.labelValue}
                         </label>) : '';
 
+            let className = this.props.hasOwnProperty('className') ? this.props.className : '';
+
             return (
-                <div className="input-group">
+                <div className={"input-group " + className}>
                     {label}
                     <input
                         onChange={this.handleInputChange}
@@ -26,7 +29,7 @@ const Input = React.createClass(
                         onClick={
                             this.props.hasOwnProperty('handleSubmit') ?
                             this.props.handleSubmit :
-                            function() {}
+                            () => {}
                         }
                     />
                 </div>
@@ -34,7 +37,6 @@ const Input = React.createClass(
         },
 
         handleInputChange(event) {
-            console.log(event.target.value);
             this.setState({value: event.target.value});
         },
 

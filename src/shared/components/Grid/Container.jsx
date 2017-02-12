@@ -1,22 +1,22 @@
 import React from 'react';
 
-const Form = React.createClass(
+
+const Container = React.createClass
+(
     {
         propTypes: {
-            handleOnSubmit: React.PropTypes.func.isRequired,
+            id: React.PropTypes.string,
             className: React.PropTypes.string,
         },
-
         render() {
+            let id = this.props.id || '';
             let className = this.props.className || '';
 
             return (
-                <form className={className}>
-                    {this.props.children}
-                </form>
+                <div id={id} className={'container ' + className}>{this.props.children}</div>
             );
         }
     }
 );
 
-export default Form;
+export default Container;
