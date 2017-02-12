@@ -1,6 +1,7 @@
 import express from 'express';
 import Config from 'app/conf/Config';
 import expressBodyParser from 'pr-express-body-parser';
+import models from '../models';
 
 const app = express();
 
@@ -14,6 +15,14 @@ app.use(expressBodyParser());
 
 app.post('/submit_character_sheet', (req, res) => {
     res.send(req.body);
+});
+
+app.get('/create_seed', (req, res) => {
+    let Aptitude = models.Aptitude;
+
+    Aptitude.findAll().then((aptitudes) => {
+        res.send(JSON.stringify(aptitudes));
+    });
 });
 
 export default app;

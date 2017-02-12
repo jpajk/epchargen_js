@@ -15,9 +15,7 @@ const Index = React.createClass
                     <Container id="app-wrapper" className="container">
                         <Row>
                             <Column columns="four">
-                                <Menu
-                                    handleTabChange={this.handleTabChange}
-                                />
+                                <Menu />
                             </Column>
                             <TabHandler tab={this.state.tab} />
                         </Row>

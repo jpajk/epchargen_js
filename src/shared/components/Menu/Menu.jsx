@@ -1,13 +1,10 @@
 import React from 'react';
 import MenuItem from './MenuItem';
 import Constants from '../Constants/Constants'
+import { Link } from 'react-router';
 
 const Menu = React.createClass(
     {
-        propTypes: {
-            handleTabChange: React.PropTypes.func.isRequired,
-        },
-
         render() {
             let constants = new Constants();
             let one = constants.get('idTabCreate');
@@ -16,24 +13,12 @@ const Menu = React.createClass(
             return (
                 <div id="main-menu">
                     <ul>
-                        <MenuItem
-                            id={one}
-                            content="Create character sheet"
-                            handle={this.handleChange}
-                        />
-                        <MenuItem
-                            id={two}
-                            content="Load character sheet"
-                            handle={this.handleChange}
-                        />
+                        <Link to="/create" >Create character sheet</Link>
+                        <Link to="/load" >Load character sheet</Link>
                     </ul>
                 </div>
             );
         },
-
-        handleChange(idTab) {
-            this.props.handleTabChange(idTab);
-        }
     }
 );
 
