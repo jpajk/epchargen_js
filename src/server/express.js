@@ -17,10 +17,11 @@ app.post('/submit_character_sheet', (req, res) => {
     res.send(req.body);
 });
 
-app.get('/create_seed', (req, res) => {
+app.post('/create_seed', (req, res) => {
     let Aptitude = models.Aptitude;
 
     Aptitude.findAll().then((aptitudes) => {
+        res.setHeader('Content-Type', 'application/json');
         res.send(JSON.stringify(aptitudes));
     });
 });

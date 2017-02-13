@@ -8,17 +8,27 @@ import performFetch from '../../functions/Fetch';
 
 const CharacterSheet = React.createClass(
     {
+        getInitialState() {
+            return {
+                aptitudes: []
+            };
+        },
+
         render() {
             return (
                 <Form className="form-aptitudes" handleOnSubmit={this.handleFormSubmit}>
                     <Column columns="eight">
-                        <Input className="atr-input" type="text" name="cog" labelValue="COG"/>
-                        <Input className="atr-input" type="text" name="coo" labelValue="COO"/>
-                        <Input className="atr-input" type="text" name="ref" labelValue="REF"/>
-                        <Input className="atr-input" type="text" name="sav" labelValue="SAV"/>
-                        <Input className="atr-input" type="text" name="som" labelValue="SOM"/>
-                        <Input className="atr-input" type="text" name="int" labelValue="INT"/>
-                        <Input className="atr-input" type="text" name="wil" labelValue="WIL"/>
+                        {this.state.aptitudes.map((apt) => {
+                            return (
+                                <Input
+                                    key={apt.id}
+                                    className="atr-input"
+                                    type="text"
+                                    name={apt.name}
+                                    labelValue={apt.name.toUpperCase()}
+                                />
+                            );
+                        })}
                     </Column>
                     <Input type="submit" name="submit_sheet" handleSubmit={this.handleFormSubmit}/>
                 </Form>
@@ -27,12 +37,13 @@ const CharacterSheet = React.createClass(
 
         handleFormSubmit(e) {
             e.preventDefault();
+            let s = SendUserData.submitCharacterSheet;
+            performFetch(s.route, s.func, s.body);
+        },
 
-            performFetch(
-                SendUserData.submitCharacterSheet.route,
-                SendUserData.submitCharacterSheet.func,
-                SendUserData.submitCharacterSheet.body
-            );
+        componentDidMount() {
+            let g = SendUserData.getInitialAptitudes;
+            performFetch(g.route, g.func(this), g.body);
         }
     }
 );
