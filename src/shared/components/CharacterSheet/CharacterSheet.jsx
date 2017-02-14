@@ -26,10 +26,10 @@ const CharacterSheet = React.createClass(
 
         handleFormSubmit(e) {
             e.preventDefault();
-            clog(this.refs.apt.getInputs());
+            let data = this.refs.apt.getInputs();
 
             let s = SendUserData.submitCharacterSheet;
-            performFetch(s.route, s.func, s.body);
+            performFetch(s.route, s.func, s.body(data));
         },
 
         /** Seed character sheet with initial data */
