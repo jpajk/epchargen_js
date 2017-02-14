@@ -15,8 +15,8 @@ const Form = React.createClass(
                     {this.props.children}
                 </form>
             );
-        }
-    }
+        },
+    },
 );
 
 export default Form;

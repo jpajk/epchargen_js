@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from '../Form/Form';
-import Input from '../Form/Input';
-import Column from '../Grid/Column';
+import Submit from '../Form/Submit';
+import Aptitudes from './Aptitudes';
 
 import SendUserData from '../../functions/SendUserData';
 import performFetch from '../../functions/Fetch';
@@ -10,37 +10,29 @@ const CharacterSheet = React.createClass(
     {
         getInitialState() {
             return {
-                aptitudes: []
+                aptitudes      : [],
+                aptitudesValues: []
             };
         },
 
         render() {
             return (
                 <Form className="form-aptitudes" handleOnSubmit={this.handleFormSubmit}>
-                    <Column columns="eight">
-                        {this.state.aptitudes.map((apt) => {
-                            return (
-                                <Input
-                                    key={apt.id}
-                                    className="atr-input"
-                                    type="text"
-                                    name={apt.name}
-                                    labelValue={apt.name.toUpperCase()}
-                                />
-                            );
-                        })}
-                    </Column>
-                    <Input type="submit" name="submit_sheet" handleSubmit={this.handleFormSubmit}/>
+                    <Aptitudes ref="apt" aptitudes={this.state.aptitudes} />
+                    <Submit handleSubmit={this.handleFormSubmit} name="submit_sheet"/>
                 </Form>
             );
         },
 
         handleFormSubmit(e) {
             e.preventDefault();
+            clog(this.refs.apt.getInputs());
+
             let s = SendUserData.submitCharacterSheet;
             performFetch(s.route, s.func, s.body);
         },
 
+        /** Seed character sheet with initial data */
         componentDidMount() {
             let g = SendUserData.getInitialAptitudes;
             performFetch(g.route, g.func(this), g.body);

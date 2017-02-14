@@ -3,7 +3,6 @@ import 'whatwg-fetch'
 export default function performFetch(route, func, body) {
 
     body = body || {};
-    let res;
 
     fetch(
         route, {

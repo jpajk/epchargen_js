@@ -5,10 +5,18 @@ const Input = React.createClass(
         propTypes: {
             value: React.PropTypes.string,
             labelValue: React.PropTypes.string,
-            handleSubmit: React.PropTypes.func,
+            initial: React.PropTypes.object,
             className: React.PropTypes.string,
+            validation: React.PropTypes.func,
             type: React.PropTypes.string.isRequired,
             name: React.PropTypes.string.isRequired,
+        },
+
+        getInitialState() {
+            if (this.props.hasOwnProperty('initial'))
+                return this.props.initial;
+            else
+                return {};
         },
 
         render() {
@@ -26,18 +34,18 @@ const Input = React.createClass(
                         onChange={this.handleInputChange}
                         type={this.props.type}
                         name={this.props.name}
-                        onClick={
-                            this.props.hasOwnProperty('handleSubmit') ?
-                            this.props.handleSubmit :
-                            () => {}
-                        }
+                        value={this.state.value}
                     />
                 </div>
             );
         },
 
         handleInputChange(event) {
-            this.setState({value: event.target.value});
+            let value = (this.props.hasOwnProperty('validation'))
+                        ? this.props.validation(event)
+                        : event.target.value;
+
+            this.setState({value: value});
         },
 
         getValue() {
