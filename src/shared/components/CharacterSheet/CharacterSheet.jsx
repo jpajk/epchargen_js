@@ -24,9 +24,14 @@ const CharacterSheet = React.createClass(
             );
         },
 
+        /**
+         * Handle character sheet ajax
+         * @param e
+         */
         handleFormSubmit(e) {
             e.preventDefault();
-            let data = this.refs.apt.getInputs();
+            let data = {};
+            data.apts = this.refs.apt.getInputs();
 
             let s = SendUserData.submitCharacterSheet;
             performFetch(s.route, s.func, s.body(data));

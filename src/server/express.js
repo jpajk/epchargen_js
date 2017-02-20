@@ -2,6 +2,7 @@ import express from 'express';
 import Config from 'app/conf/Config';
 import expressBodyParser from 'pr-express-body-parser';
 import models from '../models';
+import RepositoryDispatcher from '../repository/repository_dispatcher';
 
 const app = express();
 
@@ -14,6 +15,11 @@ app.use(expressBodyParser());
 /** Define express routes */
 
 app.post('/submit_character_sheet', (req, res) => {
+    let rd = new RepositoryDispatcher();
+    //todo validate request with ajv
+    rd.createNewCharacterSheet(req.body);
+    rd.createNewCharacterSheet(req.body);
+
     res.send(req.body);
 });
 
