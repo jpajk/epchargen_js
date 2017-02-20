@@ -17,8 +17,7 @@ app.use(expressBodyParser());
 app.post('/submit_character_sheet', (req, res) => {
     let rd = new RepositoryDispatcher();
     //todo validate request with ajv
-    rd.createNewCharacterSheet(req.body);
-    rd.createNewCharacterSheet(req.body);
+    rd.createNewCharacterSheet(JSON.parse(req.body));
 
     res.send(req.body);
 });

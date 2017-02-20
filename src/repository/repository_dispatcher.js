@@ -27,15 +27,21 @@ export default class RepositoryDispatcher
         const p = this.getRepository('player');
         const a = this.getRepository('aptitude');
 
-        let player = p.createPlayer();
-        let player_character = p.createPlayerCharacter(player.id);
+        p
+            .createPlayer()
+            .then((created) => {
+                p.createPlayerCharacter(created.id).then((pc) => {
+                    for (let key in data.apts) {
+                        if (data.apts.hasOwnProperty(key)) {
+                            let aptitude_value = data.apts[key];
 
-        for (let key in data.apts) {
-            if (data.apts.hasOwnProperty(key)) {
-                let aptitude_value = data.apts[key];
-
-                a.createAptitudeValue(aptitude_value, player_character.id);
-            }
-        }
+                            a.createAptitudeValue(aptitude_value, pc.id);
+                        }
+                    }
+                });
+            })
+        ;
     }
+
+
 }
