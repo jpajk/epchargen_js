@@ -24,13 +24,12 @@
     "type": "git",
     "url": "git+https://github.com/akhaku/lease-stats.git"
   },
-  "author": "Ammar Khaku <ammar.khaku@gmail.com>",
+  "author": "shikohin",
   "license": "Unlicense",
   "engines": {
     "node": "4.2.3",
     "npm": "2.14.7"
   },
-  "homepage": "https://github.com/akhaku/lease-stats#readme",
   "private": true,
   "dependencies": {
     "async": "^2.1.5",
@@ -42,9 +41,12 @@
     "babel-plugin-transform-object-rest-spread": "^6.5.0",
     "babel-preset-es2015": "^6.5.0",
     "babel-preset-react": "^6.5.0",
+    "connect-multiparty": "^2.0.0",
+    "cookie-parser": "^1.4.3",
     "css-loader": "^0.26.1",
     "del": "^2.2.0",
     "express": "^4.13.4",
+    "express-session": "^1.15.1",
     "gulp": "^3.9.1",
     "gulp-print": "^2.0.1",
     "gulp-watch": "^4.3.5",
@@ -53,6 +55,8 @@
     "mysql": "^2.13.0",
     "node-sass": "^4.5.0",
     "nodemon": "^1.8.1",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "pr-express-body-parser": "^0.1.4",
     "pug": "^2.0.0-beta11",
     "react": "^15.4.2",

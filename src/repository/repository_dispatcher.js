@@ -43,7 +43,6 @@ export default class RepositoryDispatcher
                 for (let key in data.apts) {
                     if (data.apts.hasOwnProperty(key)) {
                         let aptitude_value = data.apts[key];
-
                         a.createAptitudeValue(aptitude_value, pc.id);
                     }
                 }
