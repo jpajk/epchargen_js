@@ -14,13 +14,13 @@ const InputWrapper = React.createClass
              * initial int
              * ref string
              */
-            inputSchema: React.PropTypes.func.isRequired
+            inputSchema: React.PropTypes.object.isRequired
         },
 
         render() {
             return (
                 <div>
-                    {this.props.inputSchema().map((input, i) => {
+                    {this.props.inputSchema.schema.map((input, i) => {
                         return <Input ref={'i-' + i} key={i} {...input} />
                     })}
                 </div>

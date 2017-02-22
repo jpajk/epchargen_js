@@ -8,8 +8,12 @@ class Password
      * @param {string} password
      */
     static hashPassword(password, cb) {
-        bcrypt.genSalt(10, function(err, salt) {
-            bcrypt.hash(password, salt, function(err, hash) {
+        bcrypt.genSalt(10, (err, salt) => {
+            if (err) console.log(err);
+
+            bcrypt.hash(password, salt, (err, hash) => {
+                if (err) console.log(err);
+
                 cb(hash);
             });
         });
@@ -22,8 +26,7 @@ class Password
      */
     static comparePassword(password, hashed_password, cb) {
         bcrypt.compare(password, hashed_password, (err, res) => {
-            if (err)
-                console.log(err);
+            if (err) console.log(err);
 
             cb(res);
         });

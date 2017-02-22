@@ -24,6 +24,15 @@ class Message
     getClassName() {
         return this._c;
     }
+
+    static generateMessage(message, className, cb) {
+        let m = new Message();
+
+        m.setMessage(message);
+        m.setClassName(className);
+
+        cb(m);
+    }
 }
 
 export default Message;
