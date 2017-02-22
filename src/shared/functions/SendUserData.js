@@ -18,7 +18,7 @@ export default {
             return ret;
         }
     },
-    /** Seed the component with initial data */
+    /** Seed the character sheet component with initial data */
     getInitialAptitudes: {
         route: '/create_seed',
         func: (component) => {
@@ -27,5 +27,24 @@ export default {
             };
         },
         body: {}
+    },
+    /** Submit data for account registration */
+    submitAccount: {
+        route: '/submit_account',
+        func: (response) => {
+            console.log(response, ' account creation');
+        },
+        body: (data) => {
+            data = data || {};
+            let ret = {};
+
+            for (let key in data) {
+                if (data.hasOwnProperty(key)) {
+                    ret[key] = data[key];
+                }
+            }
+
+            return ret;
+        }
     }
 }

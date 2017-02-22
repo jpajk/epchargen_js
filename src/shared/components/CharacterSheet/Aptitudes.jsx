@@ -29,7 +29,6 @@ const Aptitudes = React.createClass
                             />
                         );
                     })}
-
                 </Column>
             );
         },

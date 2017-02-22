@@ -3,17 +3,9 @@ import { Player, PlayerCharacter } from '../../models';
 export default class PlayerRepository
 {
     /**
-     * @return Player|bool
+     * @return {Player|bool}
      */
-    createPlayer() {
-        return Player.create({});
-    }
-
-    /**
-     * @param id_player
-     * @return PlayerCharacter|bool
-     */
-    createPlayerCharacter(id_player) {
-        return PlayerCharacter.create({ PlayerId: id_player });
+    createPlayer(email, nick, password) {
+        return Player.create( {email: email, nickname: nick, hash: password} );
     }
 }

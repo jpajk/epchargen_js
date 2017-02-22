@@ -3,7 +3,7 @@ import React from 'react';
 const Form = React.createClass(
     {
         propTypes: {
-            handleOnSubmit: React.PropTypes.func.isRequired,
+            handleOnSubmit: React.PropTypes.func,
             className: React.PropTypes.string,
         },
 
