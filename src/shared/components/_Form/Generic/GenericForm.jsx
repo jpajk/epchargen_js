@@ -19,16 +19,22 @@ const GenericForm = React.createClass
         },
 
         render() {
+            let schema = this.props.inputGroupSchema();
+
             return (
                 <div id={this.props.idName} className={this.props.className}>
-                    <InputWrapper ref="input_wrapper" inputGroupSchema={this.props.inputGroupSchema}/>
-                    <Submit handleSubmit={this.handleSubmit} name={this.props.submitName} />
+                    <InputWrapper ref="input_wrapper" inputGroupSchema={schema}/>
+                    <Submit
+                        initialValue={schema.submit.submitValue}
+                        handleSubmit={this.handleSubmit}
+                        name={schema.submit.submitName}
+                    />
                 </div>
             );
         },
 
         handleSubmit() {
-            let inputs = this.refs.input_wrapper.getInputs();
+            let inputs = this.refs.input_wrapper.getInputValues();
             this.props.handleSubmit(inputs, this);
         }
     }

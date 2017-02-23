@@ -18,7 +18,7 @@ const Input = React.createClass
 
         getInitialState() {
             return {
-                value: '',
+                value: this.getValueOrEmpty('initialValue'),
                 errors: []
             }
         },
@@ -26,8 +26,10 @@ const Input = React.createClass
         render() {
             return (
                 <input
+                    type={this.props.type}
+                    name={this.props.name}
                     onChange={this.handleInputChange}
-                    value={this.getValueOrEmpty('initialValue')}
+                    value={this.state.value}
                     id={this.getValueOrEmpty('idName')}
                     className={'input ' + this.getValueOrEmpty('className')}
                     onClick={this.getValueOrEmptyFunction('onClick')}
@@ -36,18 +38,20 @@ const Input = React.createClass
         },
 
         handleInputChange(e) {
+            let val = e.target.value;
+
             if (this.props.hasOwnProperty('validation'))
-                this.handleValidation();
+                this.handleValidation(val);
 
             if (this.props.hasOwnProperty('onChange'))
-                this.props.onChange(e, this);
+                val = this.props.onChange(e, this);
             else
-                this.setState({value: e.target.value});
+                this.setState({value: val});
         },
 
-        handleValidation() {
+        handleValidation(val) {
             this.props.validation.map((validate) => {
-                validate(this);
+                validate(val, this);
             });
         },
 

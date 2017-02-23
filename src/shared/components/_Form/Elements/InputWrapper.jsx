@@ -6,7 +6,7 @@ const InputWrapper = React.createClass
     {
         propTypes: {
             /** Label props */
-            inputGroupSchema: React.PropTypes.array.isRequired,
+            inputGroupSchema: React.PropTypes.object.isRequired,
         },
 
         /**
@@ -16,8 +16,8 @@ const InputWrapper = React.createClass
         render() {
             return (
                 <div className="input-wrapper">
-                    {this.props.inputGroupSchema.map((ig, i) => {
-                        return <InputGroup ref={'ig-' + i} {...ig} />
+                    {this.props.inputGroupSchema.schema.map((ig, i) => {
+                        return <InputGroup key={i} ref={'ig-' + i} {...ig} />
                     })}
                 </div>
             );
@@ -30,7 +30,7 @@ const InputWrapper = React.createClass
                 if (this.refs.hasOwnProperty(key)) {
                     let input = this.refs[key];
 
-                    input_groups[input.props.name] = input.getValue();
+                    input_groups[input.props.name] = input.getInputValue();
                 }
             }
 

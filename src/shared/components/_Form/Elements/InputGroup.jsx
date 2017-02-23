@@ -27,6 +27,7 @@ const InputGroup = React.createClass
                         type={this.props.type}
                         name={this.props.name}
                         validation={this.props.validation}
+                        initialValue={this.getValueOrEmpty('initialValue')}
                     />
                 </div>
             );
