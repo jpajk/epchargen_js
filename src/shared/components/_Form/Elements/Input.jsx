@@ -19,7 +19,7 @@ const Input = React.createClass
         getInitialState() {
             return {
                 value: this.getValueOrEmpty('initialValue'),
-                errors: []
+                messages: {}
             }
         },
 
@@ -46,7 +46,7 @@ const Input = React.createClass
             if (this.props.hasOwnProperty('onChange'))
                 val = this.props.onChange(e, this);
             else
-                this.setState({value: val});
+                this.setState({ value: val });
         },
 
         handleValidation(val) {
@@ -64,7 +64,25 @@ const Input = React.createClass
         },
 
         getErrors() {
-            return this.state.errors;
+            return this.state.messages;
+        },
+
+        addToErrors(key, message) {
+            if (!this.props.hasOwnProperty(key)) {
+                let messages = this.state.messages;
+                messages[key] = message;
+
+                this.setState({ messages: messages });
+            }
+        },
+
+        removeFromErrors(key) {
+            let messages = this.state.messages;
+            if (this.props.hasOwnProperty(key)) {
+                delete messages[key];
+
+                this.setState({ messages: messages });
+            }
         },
 
         getValue() {

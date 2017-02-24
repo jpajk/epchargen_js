@@ -1,5 +1,7 @@
 "use strict";
 
+import Validation from './Validation/Validation';
+
 class RegisterDefinition
 {
     static getFormSchema() {
@@ -10,7 +12,7 @@ class RegisterDefinition
                     name: "email",
                     labelValue: "E-mail",
                     initialValue: "",
-                    validation: [(value) => { console.log(value) }]
+                    validation: [RegisterDefinition.emailValidation]
                 },
                 {
                     type: "text",
@@ -33,6 +35,17 @@ class RegisterDefinition
                 submitHandler: this.submitHandler
             }
         }
+    }
+
+    static emailValidation(val, component) {
+        let key = 'email';
+        clog(Validation.isEmail(val));
+        if (!Validation.isEmail(val))
+            component.addToErrors(key, 'This is not a valid email');
+        else
+            component.removeFromErrors(key);
+
+        clog(component.getErrors());
     }
 
     static submitHandler(data, component) {
