@@ -1,6 +1,8 @@
 "use strict";
 
 import Validation from './Validation/Validation';
+import { connect } from 'react-redux';
+import { addMessage } from '../../actions';
 
 class RegisterDefinition
 {
@@ -38,14 +40,20 @@ class RegisterDefinition
     }
 
     static emailValidation(val, component) {
-        let key = 'email';
-        clog(Validation.isEmail(val));
-        if (!Validation.isEmail(val))
-            component.addToErrors(key, 'This is not a valid email');
-        else
-            component.removeFromErrors(key);
+        let dispatcher = ({ dispatch }) => {
+            console.log('dispatched', dispatch);
+        };
+        console.log(connect);
+        connect()(dispatcher);
 
-        clog(component.getErrors());
+        // let key = 'email';
+        // clog(Validation.isEmail(val));
+        // if (!Validation.isEmail(val))
+        //     component.addToErrors(key, 'This is not a valid email');
+        // else
+        //     component.removeFromErrors(key);
+        //
+        // clog(component.getErrors());
     }
 
     static submitHandler(data, component) {
