@@ -1,7 +1,6 @@
 "use strict";
 
 import Validation from './Validation/Validation';
-import { connect } from 'react-redux';
 import { addMessage } from '../../actions';
 
 class RegisterDefinition
