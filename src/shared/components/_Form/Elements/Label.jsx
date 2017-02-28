@@ -1,12 +1,15 @@
 import React from 'react';
 
-const Label = React.createClass
-(
-    {
-        propTypes: {
+class Label extends React.Component
+{
+        constructor(props) {
+            super(props);
+        }
+
+        static propTypes = {
             htmlFor: React.PropTypes.string.isRequired,
             labelValue: React.PropTypes.string.isRequired,
-        },
+        }
 
         render() {
             return (
@@ -16,6 +19,6 @@ const Label = React.createClass
             );
         }
     }
-);
+
 
 export default Label;

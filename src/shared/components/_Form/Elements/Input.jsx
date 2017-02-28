@@ -1,9 +1,19 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 
-const Input = React.createClass
-(
+@observer
+class Input extends React.Component
     {
-        propTypes: {
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                value: this.getValueOrEmpty('initialValue'),
+                messages: {}
+            }
+        }
+
+        static propTypes = {
             type: React.PropTypes.string.isRequired,
             name: React.PropTypes.string.isRequired,
 
@@ -14,14 +24,7 @@ const Input = React.createClass
             idName: React.PropTypes.string,
             className: React.PropTypes.string,
             initialValue: React.PropTypes.string,
-        },
-
-        getInitialState() {
-            return {
-                value: this.getValueOrEmpty('initialValue'),
-                messages: {}
-            }
-        },
+        }
 
         render() {
             return (
@@ -35,7 +38,7 @@ const Input = React.createClass
                     onClick={this.getValueOrEmptyFunction('onClick')}
                 />
             );
-        },
+        }
 
         handleInputChange(e) {
             let val = e.target.value;
@@ -47,25 +50,25 @@ const Input = React.createClass
                 val = this.props.onChange(e, this);
             else
                 this.setState({ value: val });
-        },
+        }
 
         handleValidation(val) {
             this.props.validation.map((validate) => {
                 validate(val, this);
             });
-        },
+        }
 
         getValueOrEmpty(val) {
             return this.props.hasOwnProperty(val) ? this.props[val] : '';
-        },
+        }
 
         getValueOrEmptyFunction(val) {
             return this.props.hasOwnProperty(val) ? this.props[val] : () => {};
-        },
+        }
 
         getErrors() {
             return this.state.messages;
-        },
+        }
 
         addToErrors(key, message) {
             if (!this.props.hasOwnProperty(key)) {
@@ -74,7 +77,7 @@ const Input = React.createClass
 
                 this.setState({ messages: messages });
             }
-        },
+        }
 
         removeFromErrors(key) {
             let messages = this.state.messages;
@@ -83,12 +86,11 @@ const Input = React.createClass
 
                 this.setState({ messages: messages });
             }
-        },
+        }
 
         getValue() {
             return this.state.value;
         }
     }
-);
 
 export default Input;
