@@ -1,7 +1,6 @@
 "use strict";
 
 import Validation from './Validation/Validation';
-import { addMessage } from '../../actions';
 
 class RegisterDefinition
 {
@@ -39,20 +38,16 @@ class RegisterDefinition
     }
 
     static emailValidation(val, component) {
-        let dispatcher = ({ dispatch }) => {
-            console.log('dispatched', dispatch);
-        };
-        console.log(connect);
-        connect()(dispatcher);
+        let message = 'The e-mail is not correct';
+        let store = component.props.ObservableMessageStore;
 
-        // let key = 'email';
-        // clog(Validation.isEmail(val));
-        // if (!Validation.isEmail(val))
-        //     component.addToErrors(key, 'This is not a valid email');
-        // else
-        //     component.removeFromErrors(key);
-        //
-        // clog(component.getErrors());
+        if (!Validation.isEmail(val))
+            store.addMessage(message);
+        else
+            store.removeMessage(message);
+
+        clog(component.props.ObservableMessageStore);
+
     }
 
     static submitHandler(data, component) {

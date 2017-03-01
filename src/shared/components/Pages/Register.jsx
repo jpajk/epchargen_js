@@ -1,6 +1,9 @@
 import React from 'react';
-import GenericForm from '../_Form/Generic/GenericForm';
+import GenericForm from '../_Form/Register/Form';
 import RegisterDefinition from '../FormDefinitions/RegisterDefinition';
+import ObservableMessageStore from '../../../stores/MessageStore';
+import { Provider } from 'mobx-react';
+import DevTools from 'mobx-react-devtools';
 
 const Register = React.createClass
 (
@@ -8,10 +11,13 @@ const Register = React.createClass
         render() {
             return (
                 <div>
-                    <GenericForm
-                        inputGroupSchema={RegisterDefinition.getFormSchema}
-                        handleSubmit={(e)=>{console.log(e)}}
-                    />
+                    <Provider ObservableMessageStore={ObservableMessageStore.instantiate()}>
+                        <GenericForm
+                            inputGroupSchema={RegisterDefinition.getFormSchema}
+                            handleSubmit={(e)=>{console.log(e)}}
+                        />
+                    </Provider>
+                    <DevTools/>
                 </div>
             );
         },

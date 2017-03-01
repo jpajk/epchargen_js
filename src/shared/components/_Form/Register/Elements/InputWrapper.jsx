@@ -20,7 +20,10 @@ class InputWrapper extends React.Component
         return (
             <div className="input-wrapper">
                 {this.props.inputGroupSchema.schema.map((ig, i) => {
-                    return <InputGroup key={i} ref={'ig-' + i} {...ig} />
+                    return <InputGroup
+                        key={i}
+                        ref={'ig-' + i} {...ig}
+                    />
                 })}
             </div>
         );
